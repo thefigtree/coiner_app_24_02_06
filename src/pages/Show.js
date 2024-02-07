@@ -80,8 +80,17 @@ export const Show = () => {
     store.fetchData(params.id);
   }, []);
 
+  if (!store.data) return <></>;
+
   return (
     <div>
+      <header>
+        <img src={store.data.image.small}></img>
+        <h2>
+          {store.data.name} ({store.data.symbol})
+        </h2>
+      </header>
+
       <AreaChart
         width={500}
         height={400}
@@ -98,7 +107,7 @@ export const Show = () => {
         <YAxis />
         <Tooltip />
         <defs>
-          <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id="splitColor" x1="0" y1="0" x2="0" y2="1.5">
             <stop offset={off} stopColor="green" stopOpacity={1} />
             <stop offset={off} stopColor="red" stopOpacity={1} />
           </linearGradient>
