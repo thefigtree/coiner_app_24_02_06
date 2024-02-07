@@ -1,8 +1,10 @@
 import axios from "axios";
 import { create } from "zustand";
+import debounce from "../helpers/debounce";
 
 export const HomeStore = create((set) => ({
   coins: [],
+  trending: [],
   query: "",
 
   setQuery: (e) => {
@@ -10,14 +12,26 @@ export const HomeStore = create((set) => ({
     HomeStore.getState().searchCoins();
   },
 
-  searchCoins: async () => {
-    const { query } = HomeStore.getState();
+  searchCoins: debounce(async () => {
+    const { query, trending } = HomeStore.getState();
     // console.log(query);
-    const res = await axios.get(
-      `https://api.coingecko.com/api/v3/search?query=${query}`
-    );
-    console.log(res);
-  },
+    if (query.length > 2) {
+      const res = await axios.get(
+        `https://api.coingecko.com/api/v3/search?query=${query}`
+      );
+      // console.log(res.data);
+      const coins = res.data.coins.map((coin) => {
+        return {
+          name: coin.name,
+          image: coin.large,
+          id: coin.id,
+        };
+      });
+      set({ coins });
+    } else {
+      set({ coins: trending });
+    }
+  }, 500),
 
   fetchCoins: async () => {
     const res = await axios.get(
@@ -33,6 +47,6 @@ export const HomeStore = create((set) => ({
       };
     });
 
-    set({ coins });
+    set({ coins, trending: coins });
   },
 }));
