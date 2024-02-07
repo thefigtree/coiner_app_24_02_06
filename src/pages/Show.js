@@ -85,7 +85,7 @@ export const Show = () => {
   return (
     <div>
       <header>
-        <img src={store.data.image.small}></img>
+        <img src={store.data.image.large}></img>
         <h2>
           {store.data.name} ({store.data.symbol})
         </h2>
