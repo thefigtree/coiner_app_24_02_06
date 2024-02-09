@@ -118,6 +118,32 @@ export const Show = () => {
           fill="url(#splitColor)"
         />
       </AreaChart>
+      <div>
+        <h4>Market Cap Rank</h4>
+        <span>{store.data.market_cap_rank}</span>
+      </div>
+      <div>
+        <h4>24h High</h4>
+        <span>${store.data.market_data.high_24h.usd}</span>
+      </div>
+      <div>
+        <h4>24h Low</h4>
+        <span>${store.data.market_data.low_24h.usd}</span>
+      </div>
+      <div>
+        <h4>Circulating Supply</h4>
+        <span>${store.data.market_data.circulating_supply}</span>
+      </div>
+      <div>
+        <h4>Current Price</h4>
+        <span>${store.data.market_data.current_price.usd}</span>
+      </div>
+      <div>
+        <h4>1y Change</h4>
+        <span>
+          {store.data.market_data.price_change_percentage_1y.toFixed(2)}%
+        </span>
+      </div>
     </div>
   );
 };
