@@ -18,6 +18,7 @@ body {
     background-color: ${mainColors.blackColor};
     letter-spacing: -1px;
     word-break: break-all;
+    font-family: "Gowun Dodum", sans-serif;
 }
 
 ul, li {
