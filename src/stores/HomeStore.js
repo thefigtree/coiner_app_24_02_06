@@ -25,7 +25,7 @@ export const HomeStore = create((set) => ({
           name: coin.name,
           image: coin.large,
           id: coin.id,
-          priceBtc: coin.price_btc,
+          priceBtc: coin.item.price_btc,
         };
       });
       set({ coins });
