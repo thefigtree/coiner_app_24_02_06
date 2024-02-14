@@ -76,7 +76,11 @@ export const Show = () => {
   const params = useParams();
 
   useEffect(() => {
-    store.fetchData(params.id);
+    try {
+      store.fetchData(params.id);
+    } catch (error) {
+      console.log("에러" + error);
+    }
   }, []);
 
   if (!store.data) return <></>;
