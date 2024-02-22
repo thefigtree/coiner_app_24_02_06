@@ -3,6 +3,7 @@ import { routes } from "./routes";
 import { Home } from "./pages/Home";
 import { Show } from "./pages/Show";
 import { Header } from "./components/Header";
+import { PageNotFound } from "./pages/PageNotFound";
 
 const Router = () => {
   return (
@@ -11,6 +12,7 @@ const Router = () => {
       <Routes>
         <Route path={routes.home} element={<Home></Home>}></Route>
         <Route path={routes.show} element={<Show></Show>}></Route>
+        <Route path="/*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
     </HashRouter>
   );
